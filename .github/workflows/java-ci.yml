@@ -2,6 +2,9 @@ name: Java CI
 
 on: [push]
 
+defaults:
+  run:
+    working-directory: java-maven
 jobs:
   build:
     runs-on: ubuntu-latest
