@@ -2,9 +2,11 @@ name: Java CI
 
 on: [push]
 
+# specify working directory
 defaults:
   run:
     working-directory: java-maven
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,10 +14,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v3 # this will trigger cache
         with:
           java-version: '17'
           distribution: 'temurin'
+          cache: 'maven'
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots package
       - name: Move package
